@@ -17,7 +17,7 @@ def main(csv_filename, template_filename):
             html = template.render(**row)
             if len(html) > 32766:
                 raise Exception("Result is too long for row {}: ".format(row, html))
-            row[HTML_FIELDNAME] = html
+            row[HTML_FIELDNAME] = html.replace("\n", "")
             writer.writerow(row)
 
 if __name__ == '__main__':
